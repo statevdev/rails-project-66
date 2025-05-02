@@ -33,9 +33,9 @@ gem 'rollbar'
 gem 'simple_form'
 gem 'slim-rails'
 
+gem 'octokit'
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
-gem 'octokit'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[windows jruby]
