@@ -1,0 +1,5 @@
+en:
+  sign_in: Signed in successfully!
+  sign_out: Signed out successfully!
+  not_auth: Please, sign in.
+  not_auth_admin: This section is for admins only.

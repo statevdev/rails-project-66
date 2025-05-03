@@ -1,10 +1,11 @@
 en:
   layouts:
-    application:
-      title: Github Quality
-    shared:
-      nav:
+    web:
+      application:
         title: Github Quality
-        home: Home
-        sign_out: Sign out
-        sign_in: Sign in
+      shared:
+        nav:
+          title: Github Quality
+          home: Home
+          sign_out: Sign out
+          sign_in: Sign in

@@ -1,10 +1,11 @@
 ru:
   layouts:
-    application:
-      title: Анализатор качества репозиториев
-    shared:
-      nav:
+    web:
+      application:
         title: Анализатор качества репозиториев
-        home: Главная
-        sign_out: Выйти
-        sign_in: Войти
+      shared:
+        nav:
+          title: Анализатор качества репозиториев
+          home: Главная
+          sign_out: Выйти
+          sign_in: Войти
