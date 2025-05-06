@@ -10,6 +10,12 @@ ru:
       # html: '<abbr title="required">*</abbr>'
     error_notification:
       default_message: 'Пожалуйста, взгляните на проблемы ниже:'
+    buttons:
+      repository:
+        new: Добавить репозиторий
+    labels:
+      repository:
+        full_name: Github
     # Examples
     # labels:
     #   defaults:

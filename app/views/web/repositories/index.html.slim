@@ -1,0 +1,20 @@
+= content_for :title
+  = t('.title')
+
+= link_to t('.new'), new_repository_path, class: 'btn btn-outline-primary me-2'
+
+table.table.mb-5
+  thead
+    tr
+      th{ scope = 'col' } = t('.cols.title')
+      th{ scope = 'col' } = t('.cols.language')
+
+  tbody
+    - @repositories.each do |repository|
+      tr
+        td
+          - if repository.name.nil?
+            = link_to t('.not_yet'), repository
+          - else
+            = link_to repository.name, repository
+        td = repository.language

@@ -28,6 +28,10 @@ gem 'cssbundling-rails'
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem 'jbuilder'
 
+gem 'pundit'
+
+gem 'aasm'
+gem 'enumerize'
 gem 'faker'
 
 gem 'rails-i18n'
@@ -52,11 +56,6 @@ group :development, :test do
   gem 'debug', platforms: %i[mri windows]
 
   gem 'dotenv-rails'
-  gem 'minitest-power_assert'
-  gem 'rubocop'
-  gem 'rubocop-rails'
-  gem 'slim_lint'
-
   gem 'sqlite3', '~> 1.4'
 end
 
@@ -75,6 +74,12 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
   gem 'selenium-webdriver'
+
+  gem 'minitest-power_assert'
+  gem 'rubocop'
+  gem 'rubocop-rails'
+  gem 'slim_lint'
+  gem 'webmock'
 end
 
 group :production do

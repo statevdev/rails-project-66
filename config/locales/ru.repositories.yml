@@ -1,0 +1,17 @@
+ru:
+  web:
+    repositories:
+      index:
+        title: Репозитории
+        not_yet: '-'
+        cols:
+          title: Название
+          language: Язык
+        new: Добавить репозиторий
+      new:
+        title: Добавить репозиторий
+      show:
+        full_name: Название
+        language: Язык
+        created_at: Дата создания
+        updated_at: Дата обновления

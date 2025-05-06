@@ -1,0 +1,17 @@
+en:
+  web:
+    repositories:
+      index:
+        title: Repositories
+        not_yet: '-'
+        cols:
+          title: Title
+          language: Language
+        new: Add repository
+      new:
+        title: Add repository
+      show:
+        full_name: Name
+        language: Language
+        created_at: Created at
+        updated_at: Updated at

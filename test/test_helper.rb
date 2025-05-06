@@ -4,6 +4,9 @@ ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
 
+require 'webmock/minitest'
+WebMock.disable_net_connect!(allow_localhost: true)
+
 OmniAuth.config.test_mode = true
 
 module ActiveSupport
@@ -14,15 +17,28 @@ module ActiveSupport
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     fixtures :all
 
-    I18n.default_locale = :en
+    setup do
+      queue_adapter.perform_enqueued_jobs = true
+      queue_adapter.perform_enqueued_at_jobs = true
+    end
 
-    # Add more helper methods to be used by all tests here...
+    I18n.default_locale = :en
   end
 end
 
 class ActionDispatch::IntegrationTest
-  def sign_in(_user, _options = {})
-    auth_hash = Faker::Omniauth.github
+  def sign_in(user)
+    auth_hash = OmniAuth::AuthHash.new(
+      provider: 'github',
+      uid: '12345',
+      info: {
+        nickname: user.nickname,
+        email: user.email
+      },
+      credentials: {
+        token: user.token
+      }
+    )
 
     OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash::InfoHash.new(auth_hash)
 
@@ -31,6 +47,11 @@ class ActionDispatch::IntegrationTest
 
   def signed_in?
     session[:user_id].present? && current_user.present?
+  end
+
+  def sign_out
+    session.delete(:user_id)
+    session.clear
   end
 
   def current_user

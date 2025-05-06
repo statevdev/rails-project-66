@@ -13,8 +13,6 @@ module Web
 
       sign_in user
 
-      # debugger
-
       redirect_to root_path, notice: t('sign_in')
     end
 
