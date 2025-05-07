@@ -15,13 +15,7 @@ class Web::RepositoriesController < Web::ApplicationController
     @repository = Repository.new
     authorize @repository
 
-    client = Octokit::Client.new access_token: current_user.token, auto_paginate: true
-
-    @full_names = client.repos.filter_map do |repo|
-      if Repository.language.values.include?(repo[:language])
-        repo[:full_name]
-      end
-    end
+    @full_names = ApplicationContainer[:octokit_client].allowed_repos(current_user)
   end
 
   def create
