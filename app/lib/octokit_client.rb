@@ -17,7 +17,7 @@ class OctokitClient
     client(user).repository(full_name)
   end
 
-  def self.get_last_commit_sha(full_name, user, truncated = true)
+  def self.get_last_commit_sha(full_name, user, truncated: true)
     client = client(user)
 
     repo_data = get_repo_data(full_name, user)

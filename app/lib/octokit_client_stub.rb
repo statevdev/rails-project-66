@@ -9,7 +9,7 @@ class OctokitClientStub
     %w[test]
   end
 
-  def self.find_allowed_repo(_full_name, _user)
+  def self.get_repo_data(_full_name, _user)
     {
       name: 'test',
       id: 'test',
@@ -18,5 +18,9 @@ class OctokitClientStub
       clone_url: 'test',
       ssh_url: 'test'
     }
+  end
+
+  def self.get_last_commit_sha(_full_name, _user, _truncated: true)
+    'test'
   end
 end

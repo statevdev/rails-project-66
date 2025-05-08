@@ -22,7 +22,6 @@ class RepoCheckerJob < ApplicationJob
       )
     end
     check.finish!
-
   rescue StandardError
     check.fail!
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Web::Repositories::ChecksController < Web::Repositories::ApplicationController
   def show
     @repository = current_user.repositories.find(params[:repository_id])

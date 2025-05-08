@@ -16,18 +16,19 @@ table.table
       td = @check.passed
     tr
       td = t('.cols.remarks')
-      - unless @check.failed?
-        td = @check.output['offense_count']
-      - else
+      - if @check.failed?
         td = 0
+      - else
+        td = @check.output['offense_count']
     tr
       td = t('.cols.commit')
-      - unless @check.failed?
+      - if @check.failed?
+        td
+      - else
         td = link_to @check.commit_id,
               "https://github.com/#{@repository.full_name}/commit/#{@check.commit_id}",
-              target: '_blank'
-      - else
-        td
+              target: '_blank',
+              rel: 'noopener'
 
 - unless @check.failed?
   table.table.mb-5
@@ -38,12 +39,15 @@ table.table
         th{ scope = 'col' } = t('.cols.location')
     tbody
       - @check.output['files'].each do |file|
-        tr 
-          td = link_to file['path'].split("#{@check.commit_id}/").last, file['path'], target: '_blank'
+        tr
+          td = link_to file['path'].split("#{@check.commit_id}/").last,
+                file['path'],
+                target: '_blank',
+                rel: 'noopener'
           td
           td
           - file['offenses'].each do |offense|
-            tr 
+            tr
               td = offense['message']
               td = offense['cop']
               td = "#{offense['location']['line']}:#{offense['location']['column']}"

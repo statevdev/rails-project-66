@@ -42,9 +42,9 @@ table.table.mb-5
         - if check.finished?
           td = link_to check.commit_id,
                 "https://github.com/#{@repository.full_name}/commit/#{check.commit_id}",
-                target: '_blank'
+                target: '_blank',
+                rel: 'noopener'
         - else
           td
         td = check.passed
         td = l(check.created_at, format: :long)
-

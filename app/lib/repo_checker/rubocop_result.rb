@@ -11,7 +11,7 @@ module RepoChecker
 
       rubocop_json['files'].each do |file|
         next if file['offenses'].empty?
-        
+
         filepath = file['path'].split("#{repository.full_name}/").last
         github_file = "https://github.com/#{repository.full_name}/tree/#{check.commit_id}/#{filepath}"
 

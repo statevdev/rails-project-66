@@ -19,8 +19,6 @@ module RepoChecker
       system("git clone #{@clone_url} #{@target_dir}")
     end
 
-    def target_dir
-      @target_dir
-    end
+    attr_reader :target_dir
   end
 end
