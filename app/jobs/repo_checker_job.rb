@@ -13,7 +13,7 @@ class RepoCheckerJob < ApplicationJob
 
     output = RepoChecker.run(repository, check)
 
-    if output.empty?
+    if output['files'].nil?
       check.update!(passed: true)
     else
       check.update!(
@@ -22,7 +22,8 @@ class RepoCheckerJob < ApplicationJob
       )
     end
     check.finish!
-  rescue StandardError
+  rescue StandardError => e
+    Rails.logger.error("Произошла ошибка: #{e.message}")
     check.fail!
   end
 end

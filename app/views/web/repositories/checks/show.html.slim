@@ -16,7 +16,7 @@ table.table
       td = @check.passed
     tr
       td = t('.cols.remarks')
-      - if @check.failed?
+      - if @check.failed? || @check.passed
         td = 0
       - else
         td = @check.output['offense_count']
@@ -30,7 +30,7 @@ table.table
               target: '_blank',
               rel: 'noopener'
 
-- unless @check.failed?
+- unless @check.failed? || @check.passed
   table.table.mb-5
     thead
       tr
