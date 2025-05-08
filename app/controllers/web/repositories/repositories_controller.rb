@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Web::RepositoriesController < Web::ApplicationController
+class Web::Repositories::RepositoriesController < Web::Repositories::ApplicationController
   def index
     @repositories = Repository.all
     authorize Repository
@@ -8,6 +8,7 @@ class Web::RepositoriesController < Web::ApplicationController
 
   def show
     @repository = Repository.find(params[:id])
+    @checks = @repository.checks
     authorize @repository
   end
 

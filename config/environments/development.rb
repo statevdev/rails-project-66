@@ -11,7 +11,7 @@ Rails.application.configure do
   config.enable_reloading = true
 
   # Do not eager load code on boot.
-  config.eager_load = false
+  config.eager_load = true
 
   # Show full error reports.
   config.consider_all_requests_local = true
@@ -32,7 +32,7 @@ Rails.application.configure do
   else
     config.action_controller.perform_caching = false
 
-    config.cache_store = :null_store
+    config.cache_store = :file_store, "#{root}/tmp/cache/"
   end
 
   # Store uploaded files on the local file system (see config/storage.yml for options).

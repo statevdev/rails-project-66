@@ -1,0 +1,49 @@
+= content_for :title
+  = "#{t('.title')}#{@check.id}"
+
+= link_to t('.back'), repository_path(@repository), class: 'btn btn-outline-primary mb-4'
+
+table.table
+  tbody
+    tr
+      td = t('.cols.created_at')
+      td = @check.created_at
+    tr
+      td = t('.cols.status')
+      td = @check.aasm_state
+    tr
+      td = t('.cols.passed')
+      td = @check.passed
+    tr
+      td = t('.cols.remarks')
+      - unless @check.failed?
+        td = @check.output['offense_count']
+      - else
+        td = 0
+    tr
+      td = t('.cols.commit')
+      - unless @check.failed?
+        td = link_to @check.commit_id,
+              "https://github.com/#{@repository.full_name}/commit/#{@check.commit_id}",
+              target: '_blank'
+      - else
+        td
+
+- unless @check.failed?
+  table.table.mb-5
+    thead
+      tr
+        th{ scope = 'col' } = t('.cols.message')
+        th{ scope = 'col' } = t('.cols.cop')
+        th{ scope = 'col' } = t('.cols.location')
+    tbody
+      - @check.output['files'].each do |file|
+        tr 
+          td = link_to file['path'].split("#{@check.commit_id}/").last, file['path'], target: '_blank'
+          td
+          td
+          - file['offenses'].each do |offense|
+            tr 
+              td = offense['message']
+              td = offense['cop']
+              td = "#{offense['location']['line']}:#{offense['location']['column']}"

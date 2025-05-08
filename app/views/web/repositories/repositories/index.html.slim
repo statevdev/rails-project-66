@@ -1,13 +1,14 @@
 = content_for :title
   = t('.title')
 
-= link_to t('.new'), new_repository_path, class: 'btn btn-outline-primary me-2'
+= link_to t('.new'), new_repository_path, class: 'btn btn-outline-primary mb-4'
 
 table.table.mb-5
   thead
     tr
       th{ scope = 'col' } = t('.cols.title')
       th{ scope = 'col' } = t('.cols.language')
+      th{ scope = 'col' } = t('.cols.last_check_status')
 
   tbody
     - @repositories.each do |repository|
@@ -18,3 +19,8 @@ table.table.mb-5
           - else
             = link_to repository.name, repository
         td = repository.language
+        td
+          - if repository.checks.empty?
+            = false
+          - else
+            = repository.checks.last.passed

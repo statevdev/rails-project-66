@@ -13,9 +13,19 @@ class OctokitClient
     end
   end
 
-  def self.find_allowed_repo(full_name, user)
-    client(user).repos.find do |repo|
-      repo[:full_name] == full_name
-    end
+  def self.get_repo_data(full_name, user)
+    client(user).repository(full_name)
+  end
+
+  def self.get_last_commit_sha(full_name, user, truncated = true)
+    client = client(user)
+
+    repo_data = get_repo_data(full_name, user)
+
+    commits = client.commits(full_name, repo_data.default_branch)
+
+    return commits.first.sha[0, 7] if truncated
+
+    commits.first.sha
   end
 end

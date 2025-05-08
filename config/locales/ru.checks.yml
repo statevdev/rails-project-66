@@ -1,0 +1,24 @@
+ru:
+  web:
+    repositories:
+      checks:
+        show:
+          title: 'Проверка #'
+          cols:
+            created_at: Дата создания
+            status: Статус
+            passed: Проверка пройдена
+            remarks: Количество замечаний
+            commit: ID коммита
+            message: Сообщение
+            cop: Идентификатор правила
+            location: Строка и символ
+            file: Файл
+          states:
+            created: Новый
+            processing: В процессе
+            finished: Завершена
+            failed: Ошибка
+          back: Перейти к репозиторию
+        create:
+          success: Проверка началась

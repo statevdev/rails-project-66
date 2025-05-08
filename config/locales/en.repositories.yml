@@ -1,17 +1,27 @@
 en:
   web:
     repositories:
-      index:
-        title: Repositories
-        not_yet: '-'
-        cols:
-          title: Title
+      repositories:
+        index:
+          title: Repositories
+          not_yet: '-'
+          cols:
+            title: Title
+            language: Language
+            last_check_status: Last check status
+          new: Add repository
+        new:
+          title: Add repository
+        show:
+          full_name: Name
           language: Language
-        new: Add repository
-      new:
-        title: Add repository
-      show:
-        full_name: Name
-        language: Language
-        created_at: Created at
-        updated_at: Updated at
+          created_at: Created at
+          updated_at: Updated at
+          to_check: To check
+          cols:
+            created_at: Created at
+            status: Status
+            passed: Passed?
+            commit: Commit ID
+
+

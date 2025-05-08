@@ -1,0 +1,24 @@
+en:
+  web:
+    repositories:
+      checks:
+        show:
+          title: 'Check #'
+          cols:
+            created_at: Created at
+            status: Status
+            passed: Passed?
+            remarks: Count of remarks
+            commit: Commit ID
+            message: Message
+            cop: Cop
+            location: Line&Column
+            file: File
+          states:
+            created: Created
+            processing: Processing
+            finished: Finished
+            failed: Failed
+          back: Go to repository
+        create:
+          success: Check has start

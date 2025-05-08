@@ -6,7 +6,7 @@ class RepositoryLoaderJob < ApplicationJob
   queue_as :default
 
   def perform(full_name, user)
-    octokit_repository = ApplicationContainer[:octokit_client].find_allowed_repo(full_name, user)
+    octokit_repository = ApplicationContainer[:octokit_client].get_repo_data(full_name, user)
 
     repository = Repository.find_or_create_by(full_name: full_name)
 
