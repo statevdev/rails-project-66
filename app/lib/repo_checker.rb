@@ -5,14 +5,20 @@ module RepoChecker
     cloner = RepoCloner.new(repository)
     cloner.clone
 
-    runner = Linters::Rubocop::RubocopRunner.new(cloner.target_dir)
-    runner.run(Linters::Rubocop::RubocopRunner::CMD)
-    rubocop_json = runner.result
+    language = repository.language
 
-    rubocop = Linters::Rubocop::RubocopParser.new(rubocop_json, repository, check)
+    linter = LinterRouter.call(language)
 
-    return {} if rubocop.result.empty?
+    runner = Linters::BaseRunner.new(cloner.target_dir)
+    runner.run(linter[:cmd])
 
-    rubocop.result
+    linter_json = runner.result
+
+    parser = linter[:parser].new(linter_json, repository, check)
+    result = parser.run
+
+    return {} if result.empty?
+
+    result
   end
 end

@@ -5,9 +5,9 @@ class Test
   def self.test
     return unless __FILE__ == $PROGRAM_NAME
 
-    repo = RepoChecker.run(Repository.first, Repository.first.checks.last)
-    Rails.logger.debug repo
+    RepoChecker.run(Repository.first, Repository.first.checks.last)
+    # Rails.logger.debug repo
   end
 end
 
-# Test.test
+# puts Test.test

@@ -1,18 +1,11 @@
 # frozen_string_literal: true
 
-class RepoChecker::Linters::Rubocop::RubocopParser
-  attr_reader :result
-
-  def initialize(rubocop_json, repository, check)
-    @result = { files: [] }
-
-    return if rubocop_json.empty?
-
-    rubocop_json['files'].each do |file|
+class RepoChecker::Linters::Rubocop::RubocopParser < RepoChecker::Linters::BaseParser
+  def parse_json
+    @json['files'].each do |file|
       next if file['offenses'].empty?
 
-      filepath = file['path'].split("#{repository.full_name}/").last
-      github_file = "https://github.com/#{repository.full_name}/tree/#{check.commit_id}/#{filepath}"
+      github_file_path = get_github_file_path(file['path'])
 
       offenses = file['offenses'].map do |offense|
         {
@@ -26,11 +19,11 @@ class RepoChecker::Linters::Rubocop::RubocopParser
       end
 
       @result[:files] << {
-        path: github_file,
+        path: github_file_path,
         offenses: offenses
       }
     end
 
-    @result[:offense_count] = rubocop_json['summary']['offense_count']
+    @result[:offense_count] = @json['summary']['offense_count']
   end
 end

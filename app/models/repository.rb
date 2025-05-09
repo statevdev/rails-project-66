@@ -6,5 +6,5 @@ class Repository < ApplicationRecord
   belongs_to :user
   has_many :checks
 
-  enumerize :language, in: %w[Ruby]
+  enumerize :language, in: %w[Ruby JavaScript]
 end
