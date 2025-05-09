@@ -11,15 +11,11 @@ class Web::Repositories::ChecksController < Web::Repositories::ApplicationContro
     @check = @repository.checks.build
 
     if @check.save
-      RepoCheckerJob.perform_later(@repository, @check)
       @check.run!
+      RepoCheckerJob.perform_later(@repository, @check)
       redirect_to @repository, notice: t('.success')
     else
       redirect_to @repository, notice: t('fail')
     end
   end
-
-  # def permitted_params
-  #   params.require(:check).permit(:repository_id)
-  # end
 end

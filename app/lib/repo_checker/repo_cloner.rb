@@ -4,6 +4,8 @@ require 'fileutils'
 
 module RepoChecker
   class RepoCloner
+    attr_reader :target_dir
+
     TMP_DIR = File.expand_path('../../../tmp/repos', __dir__)
 
     def initialize(repository)
@@ -18,7 +20,5 @@ module RepoChecker
       FileUtils.mkdir_p(File.dirname(@target_dir))
       system("git clone #{@clone_url} #{@target_dir}")
     end
-
-    attr_reader :target_dir
   end
 end

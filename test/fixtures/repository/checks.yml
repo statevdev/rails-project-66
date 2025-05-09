@@ -1,7 +1,12 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  repository: one
-
-two:
+test:
   repository: two
+  output:
+    files:
+      - path: test.rb
+        offenses:
+          - cop: SomeCop
+            message: Fix this
+            location:
+              line: 1
+              column: 1

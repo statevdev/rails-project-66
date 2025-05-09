@@ -6,7 +6,6 @@ AllCops:
     - "db/migrate/**"
     - "vendor/**/*"
     - "node_modules/**/*"
-    - "tmp/**/*"
   NewCops: enable
   TargetRailsVersion: 6
   TargetRubyVersion: 3.2

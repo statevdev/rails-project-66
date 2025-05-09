@@ -11,9 +11,9 @@ class RepoCheckerJob < ApplicationJob
 
     check.update!(commit_id: commit_id)
 
-    output = RepoChecker.run(repository, check)
+    output = ApplicationContainer[:repo_checker].run(repository, check)
 
-    if output['files'].nil?
+    if output[:files].blank?
       check.update!(passed: true)
     else
       check.update!(
@@ -22,8 +22,5 @@ class RepoCheckerJob < ApplicationJob
       )
     end
     check.finish!
-  rescue StandardError => e
-    Rails.logger.error("Произошла ошибка: #{e.message}")
-    check.fail!
   end
 end
