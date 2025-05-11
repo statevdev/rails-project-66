@@ -40,6 +40,10 @@ gem 'mailtrap'
 
 gem 'rails-i18n'
 gem 'rollbar'
+
+gem 'rubocop'
+gem 'rubocop-rails'
+
 gem 'simple_form'
 gem 'slim-rails'
 
@@ -80,8 +84,7 @@ group :test do
   gem 'selenium-webdriver'
 
   gem 'minitest-power_assert'
-  gem 'rubocop'
-  gem 'rubocop-rails'
+
   gem 'slim_lint'
   gem 'webmock'
 end
