@@ -30,11 +30,17 @@ class OctokitClient
   end
 
   def self.set_webhook(full_name, user)
+    url = url_for(
+      controller: 'api/checks',
+      action: 'create',
+      host: Rails.application.config.default_url_options[:host]
+      )
+
     client(user).create_hook(
       full_name,
       'web',
       {
-        url: Rails.application.routes.url_helpers.api_checks_url,
+        url: url,
         content_type: 'json'
       },
       {
