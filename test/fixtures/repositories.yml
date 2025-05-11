@@ -3,7 +3,7 @@
 one:
   name: test
   github_id: 1
-  full_name: test/test
+  full_name: test/test_1
   language: Ruby
   clone_url: test
   ssh_url: test
@@ -12,7 +12,7 @@ one:
 two:
   name: test
   github_id: 2
-  full_name: test/test
+  full_name: test/test_2
   language: Ruby
   clone_url: test
   ssh_url: test

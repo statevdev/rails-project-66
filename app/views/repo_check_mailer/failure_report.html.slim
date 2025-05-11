@@ -1,0 +1,10 @@
+doctype html
+html
+  body
+    p
+      | Здравствуйте, #{@user.nickname}!
+    p
+      | Проверка репозитория "#{@check.repository.full_name}" завершилась с ошибками.
+    p
+      | Посмотреть результаты можно по ссылке:
+      a href=repository_check_url(@check.repository, @check) = repository_check_url(@check.repository, @check)

@@ -20,5 +20,13 @@ class RepositoryLoaderJob < ApplicationJob
       clone_url: octokit_repository[:clone_url],
       ssh_url: octokit_repository[:ssh_url]
     )
+
+    ApplicationContainer[:octokit_client].set_webhook(full_name, user)
+
+    check = repository.checks.build
+
+    check.run!
+
+    RepoCheckerJob.perform_later(repository, check)
   end
 end

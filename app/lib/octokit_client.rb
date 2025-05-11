@@ -28,4 +28,19 @@ class OctokitClient
 
     commits.first.sha
   end
+
+  def self.set_webhook(full_name, user)
+    client(user).create_hook(
+      full_name,
+      'web',
+      {
+        url: Rails.application.routes.url_helpers.api_checks_url,
+        content_type: 'json'
+      },
+      {
+        events: ['push'],
+        active: true
+      }
+    )
+  end
 end

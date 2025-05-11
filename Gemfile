@@ -36,6 +36,8 @@ gem 'aasm'
 gem 'enumerize'
 gem 'faker'
 
+gem 'mailtrap'
+
 gem 'rails-i18n'
 gem 'rollbar'
 gem 'simple_form'

@@ -1,0 +1,8 @@
+|
+  Здравствуйте, #{@user.nickname}!
+
+  Проверка репозитория "#{@check.repository.full_name}" завершилась с ошибками.
+
+  Посмотреть результаты можно по ссылке:
+
+= repository_check_url(@check.repository, @check)

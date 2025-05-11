@@ -23,4 +23,6 @@ class OctokitClientStub
   def self.get_last_commit_sha(_full_name, _user, _truncated: true)
     'test'
   end
+
+  def self.set_webhook(full_name, user); end
 end

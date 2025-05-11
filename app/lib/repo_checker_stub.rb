@@ -2,22 +2,13 @@
 
 module RepoCheckerStub
   def self.run(_repository, _check)
-    {
-      files: [
-        {
-          path: 'test',
-          offenses: [
-            {
-              message: 'Test',
-              cop: 'Test/Test',
-              location: {
-                line: 1,
-                column: 1
-              }
-            }
-          ]
-        }
-      ]
-    }
+    # {
+    { files: [] }
+    #     {
+    #       path: 'test',
+    #       offenses: []
+    #     }
+    #   ]
+    # }
   end
 end
