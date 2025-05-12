@@ -21,7 +21,7 @@ class RepositoryLoaderJob < ApplicationJob
       ssh_url: octokit_repository[:ssh_url]
     )
 
-    ApplicationContainer[:octokit_client].set_webhook(github_id, user)
+    ApplicationContainer[:octokit_client].set_webhook(repository.full_name, user)
 
     check = repository.checks.build
 

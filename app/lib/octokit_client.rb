@@ -29,7 +29,7 @@ class OctokitClient
     commits.first.sha
   end
 
-  def self.set_webhook(github_id, user)
+  def self.set_webhook(full_name, user)
     client = client(user)
 
     url = Rails.application.routes.url_helpers.url_for(
@@ -39,7 +39,7 @@ class OctokitClient
       host: Rails.application.config.default_url_options[:host]
     )
 
-    existing_hooks = client.hooks(github_id.to_i)
+    existing_hooks = client.hooks(full_name)
 
     already_exists = existing_hooks.any? do |hook|
       hook[:config][:url] == url
