@@ -7,7 +7,7 @@ class OctokitClient
 
   def self.allowed_repos(user)
     client(user).repos.filter_map do |repo|
-      if Repository.language.values.include?(repo[:language])
+      if Repository.language.value?(repo[:language])
         [repo[:full_name], repo[:id]]
       end
     end
