@@ -30,8 +30,6 @@ gem 'jbuilder'
 
 gem 'dry-container'
 
-gem 'dotenv-rails'
-
 gem 'pundit'
 
 gem 'aasm'
@@ -68,6 +66,8 @@ group :development, :test do
   gem 'debug', platforms: %i[mri windows]
 
   gem 'sqlite3', '~> 1.4'
+
+  gem 'dotenv-rails'
 end
 
 group :development do
