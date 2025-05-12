@@ -10,11 +10,13 @@ class RepositoryLoaderJob < ApplicationJob
 
     repository = Repository.find_or_create_by(github_id: github_id)
 
+    debugger
+
     return unless octokit_repository
 
     repository.update!(
       name: octokit_repository[:name],
-      github_id: octokit_repository[:id],
+      github_id: github_id,
       full_name: octokit_repository[:full_name],
       language: octokit_repository[:language],
       clone_url: octokit_repository[:clone_url],
