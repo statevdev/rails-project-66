@@ -10,8 +10,6 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.enable_reloading = true
 
-  config.default_url_options = { host: 'localhost:3000' }
-
   # Do not eager load code on boot.
   config.eager_load = true
 
@@ -51,7 +49,7 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :mailtrap
 
-  # config.action_mailer.mailtrap_settings = { api_key: ENV['MAILTRAP_API_KEY'], sandbox: true, inbox_id: 3687631 }
+  config.action_mailer.mailtrap_settings = { api_key: ENV.fetch('MAILTRAP_API_KEY', nil), sandbox: true, inbox_id: 3_687_631 }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

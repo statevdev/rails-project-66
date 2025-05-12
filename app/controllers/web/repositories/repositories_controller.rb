@@ -1,14 +1,18 @@
 # frozen_string_literal: true
 
 class Web::Repositories::RepositoriesController < Web::Repositories::ApplicationController
+  before_action :authenticate_user!, only: :create
+
   def index
-    @repositories = Repository.all
+    @repositories = Repository.includes(:checks, :user)
+                              .order(created_at: :desc)
+                              .page(params[:page])
     authorize Repository
   end
 
   def show
     @repository = Repository.find(params[:id])
-    @checks = @repository.checks
+    @checks = @repository.checks.order(created_at: :desc).page(params[:page])
     authorize @repository
   end
 
@@ -20,8 +24,7 @@ class Web::Repositories::RepositoriesController < Web::Repositories::Application
   end
 
   def create
-    @repository = current_user.repositories.build(permitted_params) if signed_in?
-    authorize Repository
+    @repository = current_user.repositories.build(permitted_params)
 
     if @repository.save
       RepositoryLoaderJob.perform_later(permitted_params[:full_name], current_user)

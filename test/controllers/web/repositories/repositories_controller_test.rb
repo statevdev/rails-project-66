@@ -30,8 +30,8 @@ class Web::Repositories::RepositoriesControllerTest < ActionDispatch::Integratio
     repository = Repository.find_by(@repository_attrs)
 
     assert_redirected_to repositories_path
-    assert_equal 'Success!', flash[:notice]
-    assert repository
+    assert { flash[:notice] == 'Success!' }
+    assert { repository }
   end
 
   test 'should get show' do
@@ -45,6 +45,6 @@ class Web::Repositories::RepositoriesControllerTest < ActionDispatch::Integratio
     get repositories_path
 
     assert_redirected_to root_path
-    assert_equal 'Please, sign in.', flash[:alert]
+    assert { flash[:alert] == 'Please, sign in.' }
   end
 end

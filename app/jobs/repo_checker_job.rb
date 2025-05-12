@@ -24,6 +24,10 @@ class RepoCheckerJob < ApplicationJob
       RepoCheckMailer.failure_report(repository.user, check).deliver_later
     end
 
-    check.finish!
+    if check.may_finish?
+      check.finish!
+    else
+      check.fail!
+    end
   end
 end

@@ -30,11 +30,15 @@ gem 'jbuilder'
 
 gem 'dry-container'
 
+gem 'dotenv-rails'
+
 gem 'pundit'
 
 gem 'aasm'
 gem 'enumerize'
 gem 'faker'
+
+gem 'kaminari'
 
 gem 'mailtrap'
 
@@ -63,7 +67,6 @@ gem 'bootsnap', require: false
 group :development, :test do
   gem 'debug', platforms: %i[mri windows]
 
-  gem 'dotenv-rails'
   gem 'sqlite3', '~> 1.4'
 end
 

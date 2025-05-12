@@ -15,7 +15,7 @@ class RepoChecker::Linters::BaseRunner
     cmd = "#{command} #{@target_dir}"
     stdout, status = Open3.popen3(cmd) { |_stdin, stdout, _stderr, wait_thr| [stdout.read, wait_thr.value] }
 
-    return {} if status.success?
+    return @result if status.success?
 
     @result = JSON.parse(stdout)
   ensure

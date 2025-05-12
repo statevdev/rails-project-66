@@ -23,3 +23,9 @@ ru:
             status: Статус
             passed: Проверка пройдена?
             commit: ID коммита
+          states:
+            created: Создана
+            processing: В процессе
+            finished: Завершена
+            failed: Произошла ошибка
+

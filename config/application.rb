@@ -18,7 +18,11 @@ module RailsProject66
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
 
-    # routes.default_url_options = { host: ENV['BASE_URL'] }
+    config.i18n.default_locale = :ru
+
+    config.i18n.available_locales = %i[en ru]
+
+    config.default_url_options = { host: ENV.fetch('BASE_URL', nil) }
 
     # Configuration for the application, engines, and railties goes here.
     #

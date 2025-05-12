@@ -18,8 +18,8 @@ class Web::Repositories::ChecksControllerTest < ActionDispatch::IntegrationTest
 
     check.finished?
     assert_redirected_to repository
-    assert_equal 'Check has start', flash[:notice]
-    assert check
+    assert { flash[:notice] == 'Check has start' }
+    assert { check }
   end
 
   test 'should get show' do
@@ -35,6 +35,6 @@ class Web::Repositories::ChecksControllerTest < ActionDispatch::IntegrationTest
     get repositories_path
 
     assert_redirected_to root_path
-    assert_equal 'Please, sign in.', flash[:alert]
+    assert { flash[:alert] == 'Please, sign in.' }
   end
 end

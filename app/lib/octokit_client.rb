@@ -30,13 +30,24 @@ class OctokitClient
   end
 
   def self.set_webhook(full_name, user)
-    url = url_for(
+    client = client(user)
+
+    url = Rails.application.routes.url_helpers.url_for(
       controller: 'api/checks',
       action: 'create',
+      only_path: false,
       host: Rails.application.config.default_url_options[:host]
-      )
+    )
 
-    client(user).create_hook(
+    existing_hooks = client.hooks(full_name)
+
+    already_exists = existing_hooks.any? do |hook|
+      hook[:config][:url] == url
+    end
+
+    return if already_exists
+
+    client.create_hook(
       full_name,
       'web',
       {

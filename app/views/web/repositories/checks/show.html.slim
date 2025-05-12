@@ -10,7 +10,7 @@ table.table
       td = @check.created_at
     tr
       td = t('.cols.status')
-      td = @check.aasm_state
+      td = t(".states.#{@check.aasm_state}")
     tr
       td = t('.cols.passed')
       td = @check.passed

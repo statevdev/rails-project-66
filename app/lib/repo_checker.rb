@@ -15,10 +15,6 @@ module RepoChecker
     linter_json = runner.result
 
     parser = linter[:parser].new(linter_json, repository, check)
-    result = parser.run
-
-    return {} if result.empty?
-
-    result
+    parser.run
   end
 end

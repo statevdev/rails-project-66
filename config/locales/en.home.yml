@@ -1,0 +1,11 @@
+en:
+  web:
+    home:
+      index:
+        title: About us
+        about: |
+          This application it's a service for checking code in Github repositories.
+
+          It provides automatic selection of your repositories, including language selection and popular linter setting.
+
+          During the checkout, you will see where the error was found, the errors themselves, and a link to the corresponding commit.

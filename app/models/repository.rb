@@ -7,4 +7,6 @@ class Repository < ApplicationRecord
   has_many :checks
 
   enumerize :language, in: %w[Ruby JavaScript]
+
+  validates :full_name, presence: true, uniqueness: true
 end

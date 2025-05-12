@@ -14,6 +14,6 @@ class Api::ChecksControllerTest < ActionDispatch::IntegrationTest
 
     check.finished?
 
-    assert check
+    assert { check }
   end
 end

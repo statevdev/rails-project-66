@@ -41,7 +41,7 @@ table.table.mb-5
           td = link_to check.id, request.path
         - else
           td = link_to check.id, repository_check_path(@repository, check)
-        td = check.aasm_state
+        td = t(".states.#{check.aasm_state}")
         - if check.finished?
           td = link_to check.commit_id,
                 "https://github.com/#{@repository.full_name}/commit/#{check.commit_id}",
@@ -51,3 +51,6 @@ table.table.mb-5
           td
         td = check.passed
         td = l(check.created_at, format: :long)
+
+.d-flex.justify-content-center.mt-3
+  = paginate @checks

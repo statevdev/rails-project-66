@@ -5,3 +5,9 @@ en:
   show: Show
   edit: Edit
   destroy: Destroy
+  views:
+    pagination:
+      first: ...
+      previous: Back
+      next: Next
+      last: Last

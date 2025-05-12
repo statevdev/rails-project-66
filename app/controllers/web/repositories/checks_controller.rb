@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Web::Repositories::ChecksController < Web::Repositories::ApplicationController
+  before_action :authenticate_user!
+
   def show
     @repository = current_user.repositories.find(params[:repository_id])
     @check = Repository::Check.find(params[:id])

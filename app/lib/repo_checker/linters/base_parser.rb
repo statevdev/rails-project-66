@@ -11,7 +11,7 @@ class RepoChecker::Linters::BaseParser
   end
 
   def run
-    return {} if @json.empty?
+    return @json if @json.empty?
 
     parse_json
     result

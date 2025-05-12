@@ -4,3 +4,9 @@ ru:
   show: Показать
   edit: Редактировать
   destroy: Удалить
+  views:
+    pagination:
+      first: ...
+      previous: Назад
+      next: Далее
+      last: Назад

@@ -22,3 +22,8 @@ ru:
           back: Перейти к репозиторию
         create:
           success: Проверка началась
+        states:
+          created: Создана
+          processing: В процессе
+          finished: Завершена
+          failed: Произошла ошибка

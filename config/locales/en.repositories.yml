@@ -23,5 +23,10 @@ en:
             status: Status
             passed: Passed?
             commit: Commit ID
+          states:
+            created: Created
+            processing: Processing
+            finished: Finished
+            failed: Failed
 
 

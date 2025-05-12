@@ -22,3 +22,9 @@ en:
           back: Go to repository
         create:
           success: Check has start
+        states:
+          created: Created
+          processing: Processing
+          finished: Finished
+          failed: Failed
+
