@@ -8,5 +8,5 @@ class Repository < ApplicationRecord
 
   enumerize :language, in: %w[Ruby JavaScript]
 
-  validates :full_name, presence: true, uniqueness: true
+  validates :full_name, uniqueness: true
 end

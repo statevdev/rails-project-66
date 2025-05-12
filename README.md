@@ -20,7 +20,7 @@ During the checkout, you will see where the error was found, the errors themselv
 - Internationalization (en; ru)
   - i18n
 - Object containerization
- - dry-container
+  - dry-container
 - Sending an error report to the mail
   - action-mailer & mailtrap
 

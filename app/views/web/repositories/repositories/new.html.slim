@@ -1,4 +1,4 @@
 = content_for :title do
   = t('.title')
 
-= render 'form', repository: @repository, full_names: @full_names, text: t('simple_form.buttons.repository.new')
+= render 'form', repository: @repository, allowed_repos: @allowed_repos, text: t('simple_form.buttons.repository.new')

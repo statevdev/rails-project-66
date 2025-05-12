@@ -2,8 +2,8 @@
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-  = f.input :full_name,
-            collection: full_names,
+  = f.input :github_id,
+            collection: allowed_repos,
             label: t('simple_form.labels.repository.full_name'),
             required: true
 

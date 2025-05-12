@@ -20,14 +20,14 @@ class Web::Repositories::RepositoriesController < Web::Repositories::Application
     @repository = Repository.new
     authorize @repository
 
-    @full_names = ApplicationContainer[:octokit_client].allowed_repos(current_user)
+    @allowed_repos = ApplicationContainer[:octokit_client].allowed_repos(current_user)
   end
 
   def create
     @repository = current_user.repositories.build(permitted_params)
 
     if @repository.save
-      RepositoryLoaderJob.perform_later(permitted_params[:full_name], current_user)
+      RepositoryLoaderJob.perform_later(permitted_params[:github_id], current_user)
       redirect_to repositories_path, notice: t('success')
     else
       render :new, status: :unprocessable_entity
@@ -35,6 +35,6 @@ class Web::Repositories::RepositoriesController < Web::Repositories::Application
   end
 
   def permitted_params
-    params.require(:repository).permit(:full_name)
+    params.require(:repository).permit(:github_id)
   end
 end

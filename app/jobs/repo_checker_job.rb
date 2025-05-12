@@ -4,10 +4,10 @@ class RepoCheckerJob < ApplicationJob
   queue_as :default
 
   def perform(repository, check)
-    repo_name = repository.full_name
+    github_id = repository.github_id
     user = repository.user
 
-    commit_id = ApplicationContainer[:octokit_client].get_last_commit_sha(repo_name, user)
+    commit_id = ApplicationContainer[:octokit_client].get_last_commit_sha(github_id, user)
 
     check.update!(commit_id: commit_id)
 
