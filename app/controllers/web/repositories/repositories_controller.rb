@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Web::Repositories::RepositoriesController < Web::Repositories::ApplicationController
-  before_action :authenticate_user!, only: :create
+  # before_action :authenticate_user!, only: :create
 
   def index
     @repositories = Repository.includes(:checks, :user)
@@ -35,6 +35,6 @@ class Web::Repositories::RepositoriesController < Web::Repositories::Application
   end
 
   def permitted_params
-    params.require(:repository).permit(:github_id)
+    params.require(:repository).permit(:github_id, :full_name)
   end
 end
