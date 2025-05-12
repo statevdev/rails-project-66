@@ -5,7 +5,7 @@ require 'test_helper'
 class Web::Repositories::RepositoriesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = users(:user)
-    @repository_attrs = { github_id: 123456 }
+    @repository_attrs = { github_id: 123_456 }
   end
 
   test 'should get index' do

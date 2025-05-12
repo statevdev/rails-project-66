@@ -12,7 +12,7 @@ class OctokitClientStub
   def self.get_repo_data(_full_name, _user)
     {
       name: 'test',
-      id: 123456,
+      id: 123_456,
       full_name: 'test/test',
       language: 'Ruby',
       clone_url: 'test',

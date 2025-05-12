@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Web::Repositories::RepositoriesController < Web::Repositories::ApplicationController
-  before_action :authenticate_user!, only: :create
+  # before_action :authenticate_user!, only: :create
 
   def index
     @repositories = Repository.includes(:checks, :user)
