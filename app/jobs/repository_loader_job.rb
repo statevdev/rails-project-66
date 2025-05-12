@@ -10,8 +10,6 @@ class RepositoryLoaderJob < ApplicationJob
 
     repository = Repository.find_or_create_by(github_id: github_id)
 
-    debugger
-
     return unless octokit_repository
 
     repository.update!(
