@@ -30,7 +30,7 @@ table.table
               target: '_blank',
               rel: 'noopener'
 
-- unless @check.failed? || @check.passed
+- unless @check.failed? || @check.output.empty?
   table.table.mb-5
     thead
       tr
