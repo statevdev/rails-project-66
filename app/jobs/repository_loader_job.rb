@@ -23,12 +23,12 @@ class RepositoryLoaderJob < ApplicationJob
 
     hook = ApplicationContainer[:octokit_client].set_webhook(repository.full_name, user)
 
-    unless hook
-      check = repository.checks.create!
+    return if hook
 
-      check.run!
+    check = repository.checks.create!
 
-      RepoCheckerJob.perform_later(repository, check)
-    end
+    check.run!
+
+    RepoCheckerJob.perform_later(repository, check)
   end
 end
