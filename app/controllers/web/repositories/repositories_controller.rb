@@ -4,10 +4,10 @@ class Web::Repositories::RepositoriesController < Web::Repositories::Application
   before_action :authenticate_user!, only: :create
 
   def index
-    @repositories = Repository.includes(:checks, :user)
-                              .order(created_at: :desc)
-                              .page(params[:page])
-    authorize Repository
+    @repositories = current_user.repositories
+                                .includes(:checks)
+                                .order(created_at: :desc)
+                                .page(params[:page])
   end
 
   def show
