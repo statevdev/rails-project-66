@@ -26,9 +26,12 @@ class Web::Repositories::RepositoriesController < Web::Repositories::Application
   def create
     @repository = current_user.repositories.build(permitted_params)
 
-    @repository.save!
-    RepositoryLoaderJob.perform_later(permitted_params[:github_id], current_user)
-    redirect_to repositories_path, notice: t('success')
+    if @repository.save
+      RepositoryLoaderJob.perform_later(permitted_params[:github_id], current_user)
+      redirect_to repositories_path, notice: t('success')
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def permitted_params

@@ -21,10 +21,4 @@ class Repository::Check < ApplicationRecord
       transitions to: :failed
     end
   end
-
-  # def result!
-  #   Rails.cache.fetch("#{cache_key_with_version}/result/#{commit_id}", expires_in: 1.hours) do
-  #     RepoCheckerJob.perform_later(repository_id)
-  #   end
-  # end
 end
