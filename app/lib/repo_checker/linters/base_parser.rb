@@ -3,10 +3,10 @@
 class RepoChecker::Linters::BaseParser
   attr_reader :result
 
-  def initialize(json, repository, check)
+  def initialize(json, full_name, commit_id)
     @json = json
-    @repository = repository
-    @check = check
+    @full_name = full_name
+    @commit_id = commit_id
     @result = { files: [] }
   end
 
@@ -20,7 +20,7 @@ class RepoChecker::Linters::BaseParser
   def parse_json; end
 
   def get_github_file_path(filepath)
-    relative_path = filepath.split("#{@repository.full_name}/").last
-    "https://github.com/#{@repository.full_name}/tree/#{@check.commit_id}/#{relative_path}"
+    relative_path = filepath.split("#{@full_name}/").last
+    "https://github.com/#{@full_name}/tree/#{@commit_id}/#{relative_path}"
   end
 end

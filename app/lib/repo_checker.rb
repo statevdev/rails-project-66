@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
 module RepoChecker
-  def self.run(repository, check)
+  def self.run(full_name:, clone_url:, language:, commit_id:)
     Rails.logger.info('DEBUG -- Start cloning')
-    cloner = RepoCloner.new(repository)
+    cloner = RepoCloner.new(full_name, clone_url)
     cloner.clone
-
-    language = repository.language
 
     Rails.logger.info('DEBUG -- Linter routing')
     linter = LinterRouter.call(language)
@@ -19,7 +17,7 @@ module RepoChecker
     Rails.logger.info("DEBUG -- Getting result: #{linter_json}")
 
     Rails.logger.info('DEBUG -- Running parser')
-    parser = linter[:parser].new(linter_json, repository, check)
+    parser = linter[:parser].new(linter_json, full_name, commit_id)
     parser.run
   end
 end

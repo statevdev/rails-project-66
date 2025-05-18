@@ -6,10 +6,10 @@ module RepoChecker
 
     TMP_DIR = Rails.root.join('tmp/repos')
 
-    def initialize(repository)
-      @repo_name = repository.full_name
-      @clone_url = repository.clone_url
-      @target_dir = TMP_DIR.join(@repo_name)
+    def initialize(full_name, clone_url)
+      @full_name = full_name
+      @clone_url = clone_url
+      @target_dir = TMP_DIR.join(@full_name)
     end
 
     def clone

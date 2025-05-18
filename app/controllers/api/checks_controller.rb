@@ -14,7 +14,7 @@ class Api::ChecksController < Api::ApplicationController
 
     check.run!
 
-    RepoCheckerJob.perform_now(repository, check)
+    RepoCheckerJob.perform_later(check.id)
 
     head :ok
   end

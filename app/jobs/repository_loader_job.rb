@@ -5,10 +5,14 @@ require 'octokit'
 class RepositoryLoaderJob < ApplicationJob
   queue_as :default
 
-  def perform(github_id, user)
-    octokit_repository = ApplicationContainer[:octokit_client].get_repo_data(github_id, user)
+  def perform(github_id)
+    repository = Repository.find_by(github_id: github_id)
 
-    repository = Repository.find_or_create_by(github_id: github_id)
+    token = repository.user.token
+
+    github_user = ApplicationContainer[:octokit_client].client(token)
+
+    octokit_repository = ApplicationContainer[:octokit_client].get_repo_data(github_id, github_user)
 
     return unless octokit_repository
 
@@ -21,6 +25,6 @@ class RepositoryLoaderJob < ApplicationJob
       ssh_url: octokit_repository[:ssh_url]
     )
 
-    ApplicationContainer[:octokit_client].set_webhook(repository.full_name, user)
+    ApplicationContainer[:octokit_client].set_webhook(repository.full_name, github_user)
   end
 end
