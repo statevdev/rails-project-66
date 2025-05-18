@@ -21,14 +21,16 @@ class RepositoryLoaderJob < ApplicationJob
       ssh_url: octokit_repository[:ssh_url]
     )
 
-    hook = ApplicationContainer[:octokit_client].set_webhook(repository.full_name, user)
+    ApplicationContainer[:octokit_client].set_webhook(repository.full_name, user)
 
-    return if hook
+    # debugger
 
-    check = repository.checks.create!
+    # return if hook
 
-    check.run!
+    # check = repository.checks.create!
 
-    RepoCheckerJob.perform_later(repository, check)
+    # check.run!
+
+    # RepoCheckerJob.perform_now(repository, check)
   end
 end
