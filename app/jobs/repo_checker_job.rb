@@ -4,7 +4,6 @@ class RepoCheckerJob < ApplicationJob
   queue_as :default
 
   def perform(repository, check)
-    Rails.logger.info('Start checking...')
     github_id = repository.github_id
     user = repository.user
 
