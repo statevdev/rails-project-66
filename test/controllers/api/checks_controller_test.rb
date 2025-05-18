@@ -12,7 +12,7 @@ class Api::ChecksControllerTest < ActionDispatch::IntegrationTest
 
     check = Repository::Check.find_by(repository_id: repository.id)
 
-    check.finished?
+    assert { check.finished? }
 
     assert { check }
   end

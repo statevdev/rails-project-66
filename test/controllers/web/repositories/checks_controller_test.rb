@@ -16,7 +16,7 @@ class Web::Repositories::ChecksControllerTest < ActionDispatch::IntegrationTest
 
     check = Repository::Check.find_by(repository_id: repository.id)
 
-    check.finished?
+    assert { check.finished? }
     assert_redirected_to repository
     assert { flash[:notice] == 'Check has start' }
     assert { check }
