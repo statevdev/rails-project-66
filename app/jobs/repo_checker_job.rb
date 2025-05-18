@@ -4,6 +4,7 @@ class RepoCheckerJob < ApplicationJob
   queue_as :default
 
   def perform(repository, check)
+    Rails.logger.info('Start checking...')
     github_id = repository.github_id
     user = repository.user
 
@@ -23,9 +24,9 @@ class RepoCheckerJob < ApplicationJob
         passed: false
       )
 
-      RepoCheckMailer.failure_report(repository.user, check).deliver_later
+      RepoCheckMailer.failure_report(repository.user, check).deliver_now
     end
-  rescue StandartError
+  rescue StandardError
     check.fail!
   end
 end
