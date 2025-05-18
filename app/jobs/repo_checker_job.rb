@@ -13,6 +13,8 @@ class RepoCheckerJob < ApplicationJob
 
     output = ApplicationContainer[:repo_checker].run(repository, check)
 
+    check.finish!
+
     if output[:files].blank?
       check.update!(passed: true)
     else
@@ -23,8 +25,6 @@ class RepoCheckerJob < ApplicationJob
 
       RepoCheckMailer.failure_report(repository.user, check).deliver_later
     end
-
-    check.finish!
   rescue StandartError
     check.fail!
   end
