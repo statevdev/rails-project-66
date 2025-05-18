@@ -4,12 +4,12 @@ class Web::Repositories::ChecksController < Web::Repositories::ApplicationContro
   before_action :authenticate_user!
 
   def show
-    @repository = current_user.repositories.find(params[:repository_id])
+    @repository = current_user.repositories.find(params[:repository][:id])
     @check = Repository::Check.find(params[:id])
   end
 
   def create
-    @repository = current_user.repositories.find(params[:repository_id])
+    @repository = current_user.repositories.find(params[:repository][:id])
     @check = @repository.checks.build
 
     if @check.save
