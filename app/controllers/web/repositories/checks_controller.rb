@@ -14,7 +14,7 @@ class Web::Repositories::ChecksController < Web::Repositories::ApplicationContro
 
     if @check.save
       @check.run!
-      RepoCheckerJob.perform_later(@repository, @check)
+      RepoCheckerJob.perform_now(@repository, @check)
       redirect_to @repository, notice: t('.success')
     else
       redirect_to @repository, notice: t('fail')
