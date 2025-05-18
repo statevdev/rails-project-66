@@ -19,6 +19,7 @@ class RepoChecker::Linters::BaseRunner
 
     return @result if status.success?
 
+    Rails.logger.info('DEBUG -- Start JSON parsing')
     @result = JSON.parse(stdout)
     Rails.logger.info("DEBUG -- RESULT: #{@result.inspect}")
   ensure
