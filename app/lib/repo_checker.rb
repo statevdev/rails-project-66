@@ -16,7 +16,9 @@ module RepoChecker
     runner.run(linter[:cmd])
 
     linter_json = runner.result
+    Rails.logger.info("DEBUG -- Getting result: #{linter_json}")
 
+    Rails.logger.info('DEBUG -- Running parser')
     parser = linter[:parser].new(linter_json, repository, check)
     parser.run
   end
