@@ -6,7 +6,7 @@ class RepoCheckMailer < ApplicationMailer
 
     mail(
       to: @check.repository.user.email,
-      subject: "Проверка репозитория не прошла: #{@check.repository.full_name}"
+      subject: "#{t('.failed')} #{@check.repository.full_name}"
     )
   end
 end

@@ -1,0 +1,3 @@
+ru:
+  repo_check_mailer:
+    failed: Проверка репозитория не прошла

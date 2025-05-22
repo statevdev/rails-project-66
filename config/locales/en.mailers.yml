@@ -1,0 +1,3 @@
+en:
+  repo_check_mailer:
+    failed: Repository check failed
